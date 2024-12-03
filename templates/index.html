@@ -13,17 +13,155 @@
 
     <form method="POST">
         <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <label for="checking_balance">Checking Balance</label>
+            <select name="checking_balance" id="checking_balance">
+                    <option disabled selected>Select...</option>
+                    <option value="0 DM"> 0 DM</option>
+                    <option value="1 - 200 DM"> 1 - 200 DM</option>
+                    <option value = "> 200 DM"> >200 DM</option>   
+            </select>
         </div>
+
         <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="months_loan_duration">Loan Duration (Months)</label>
+            <input type="number" id="months_loan_duration" name="months_loan_duration" min="1" required>
         </div>
+
+        <div>
+            <label for="credit_history"></label>
+            <select id = "credit_history" name="credit_history">
+                <option disabled selected>Select...</option>
+                <option>Good</option>
+                <option>Poor</option>
+                <option>Critical</option>
+            </select>
+        </div>
+       
+        <!--purpose (Dropdown)--> 
+        <div>
+            <label for="purpose">Checking Balance</label>
+            <select id="purpose" name="purpose">
+                    <option disabled selected>Select...</option>    
+                    <option value="furniture/appliances"> Furniture/Appliances</option>
+                    <option value="education"> Education</option>
+                    <option value="car"> Car</option> 
+                    <option value="business">Business</option>
+                    <option value="renovations">Renovations</option>  
+            </select>
+        </div>
+
+        <!-- amount (integer input)--> 
+        <div>
+            <label for="amount">Amount to be Borrowed ($)</label>
+            <input type="number" id="amount" name="amount" min="0" required>
+        </div>
+
+        <!-- *savings_balance (Dropdown)*-->
+        <div>
+            <label for="savings_balance">Savings Balance</label>
+            <select id="savings_balance" name="savings_balance">
+                <option disabled selected>Select...</option>
+                <option value="unknown">unknown</option>
+                <option value="< 100 DM">< 100 DM</option>
+                <option value="500 - 1000 DM">500 - 1000 DM</option>
+                <option value="> 1000 DM">> 1000 DM</option>
+                <option value="100 - 500 DM">100 - 500 DM</option>
+            </select>
+        </div>
+        
+        <!-- *employment_duration (Dropdown)*--> 
+        <div>
+            <label for="employment_duration">Employment Duration</label>
+            <select id="employment_duration" name="employment_duration">
+                <option disabled selected>Select...</option>
+                <option value="> 7 years">> 7 years</option>
+                <option value="1 - 4 years">1 - 4 years</option>
+                <option value="4 - 7 years">4 - 7 years</option>
+                <option value="unemployed">unemployed</option>
+                <option value="< 1 year">< 1 year</option>
+            </select>
+        </div>
+        
+        
+        <!-- percent_of_income  (integer input)--> 
+        <div>
+            <label for="percent_of_income">Loan as a % of Income</label>
+            <input type="number" id="percent_of_income" name="percent_of_income" min="1" required>
+        </div>
+        
+        <!-- years_at_residence (integer input)--> 
+        <div>
+            <label for="years_at_residence">Years at the Current Residence</label>
+            <input type="number" id="years_at_residence" name="years_at_residence" min="1" required>
+        </div>
+        
+        <!-- age (integer input)--> 
+        <div>
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="1" required>
+        </div>
+        
+        <!-- *other_credit (Dropdown)*--> 
+        <div>
+            <label for="other_credit">Other Credit</label>
+            <select id="other_credit" name="other_credit">
+                <option disabled selected>Select...</option>
+                <option value="none">None</option>
+                <option value="bank">Bank</option>
+                <option value="store">Store</option>
+            </select>
+        </div>
+        
+        
+        <!-- *housing  (Dropdown)*--> 
+        <div>
+            <label for="housing">Housing</label>
+            <select id="housing" name="housing">
+                <option disabled selected>Select...</option>
+                <option value="own">Own</option>
+                <option value="other">Other</option>
+                <option value="rent">Rent</option>
+            </select>
+        </div>
+        
+        
+        <!-- existing_loans_count (integer input)--> 
+        <div>
+            <label for="existing_loans_count">Existing Loan Count</label>
+            <input type="number" id="existing_loans_count" name="existing_loans_count" min="1" required>
+        </div>
+        
+        <!-- *job (Dropdown)*--> 
+        <div>
+            <label for="job">Job</label>
+            <select id="job" name="job">
+                <option disabled selected>Select...</option>
+                <option value="skilled">Skilled</option>
+                <option value="unskilled">Unskilled</option>
+                <option value="management">Management</option>
+                <option value="unemployed">unemployed</option>
+            </select>
+        </div>
+        
+        
+        <!-- dependents (integer input)--> 
+        <div>
+            <label for="dependents">Number of Dependents</label>
+            <input type="number" id="dependents" name="dependents" min="1" required>
+        </div>
+        
+        <!-- *phone (Dropdown)*  -->  
+        <div>
+            <label for="phone">Phone</label>
+            <select id="phone" name="phone" required>
+                <option disabled selected>Select...</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>  
+
         <div>
             <input type="submit" value="Submit">
         </div>
     </form>
-
-      
 </body>
