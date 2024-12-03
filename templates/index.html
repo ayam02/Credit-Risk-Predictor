@@ -16,8 +16,9 @@
             <label for="checking_balance">Checking Balance</label>
             <select name="checking_balance" id="checking_balance">
                     <option disabled selected>Select...</option>
-                    <option value="0 DM"> 0 DM</option>
+                    <option value="< 0 DM"> < 0 DM</option>
                     <option value="1 - 200 DM"> 1 - 200 DM</option>
+                    <option value = "unknown"> unknown</option>   
                     <option value = "> 200 DM"> >200 DM</option>   
             </select>
         </div>
@@ -28,18 +29,20 @@
         </div>
 
         <div>
-            <label for="credit_history"></label>
+            <label for="credit_history">Credit History</label>
             <select id = "credit_history" name="credit_history">
                 <option disabled selected>Select...</option>
-                <option>Good</option>
-                <option>Poor</option>
-                <option>Critical</option>
+                <option value="good">Good</option>
+                <option value="poor">Poor</option>
+                <option value="critical">Critical</option>
+                <option value = "perfect">perfect</option>
+                <option value="very good">very good</option>
             </select>
         </div>
        
         <!--purpose (Dropdown)--> 
         <div>
-            <label for="purpose">Checking Balance</label>
+            <label for="purpose">Purpose</label>
             <select id="purpose" name="purpose">
                     <option disabled selected>Select...</option>    
                     <option value="furniture/appliances"> Furniture/Appliances</option>
@@ -53,7 +56,7 @@
         <!-- amount (integer input)--> 
         <div>
             <label for="amount">Amount to be Borrowed ($)</label>
-            <input type="number" id="amount" name="amount" min="0" required>
+            <input type="number" id="amount" name="amount" min="1" required>
         </div>
 
         <!-- *savings_balance (Dropdown)*-->
@@ -92,7 +95,7 @@
         <!-- years_at_residence (integer input)--> 
         <div>
             <label for="years_at_residence">Years at the Current Residence</label>
-            <input type="number" id="years_at_residence" name="years_at_residence" min="1" required>
+            <input type="number" id="years_at_residence" name="years_at_residence" min="0" required>
         </div>
         
         <!-- age (integer input)--> 
@@ -128,7 +131,7 @@
         <!-- existing_loans_count (integer input)--> 
         <div>
             <label for="existing_loans_count">Existing Loan Count</label>
-            <input type="number" id="existing_loans_count" name="existing_loans_count" min="1" required>
+            <input type="number" id="existing_loans_count" name="existing_loans_count" min="0" required>
         </div>
         
         <!-- *job (Dropdown)*--> 
@@ -147,7 +150,7 @@
         <!-- dependents (integer input)--> 
         <div>
             <label for="dependents">Number of Dependents</label>
-            <input type="number" id="dependents" name="dependents" min="1" required>
+            <input type="number" id="dependents" name="dependents" min="0" required>
         </div>
         
         <!-- *phone (Dropdown)*  -->  
