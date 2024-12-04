@@ -7,14 +7,23 @@
     <title>Credit Risk</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+
+    <link href="index.css" rel="stylesheet">
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>
 
-<body>
 
-    <form method="POST">
-        <div>
-            <label for="checking_balance">Checking Balance</label>
-            <select name="checking_balance" id="checking_balance">
+<body style="display: flex; justify-content:center; align-items: center;">
+
+    <form method="POST" style="padding: 10px; margin: 10px; border: 2px solid; border-color: #D3D3D3; border-radius: 5px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+        <!-- <div>
+            <label for="checking_balance">Checking Balance</label> -->
+        <div class="input-group mb-3">
+            <span class="input-group-text">Checking Balance</span>
+            <select class="form-select" required name="checking_balance" id="checking_balance">
                     <option disabled selected>Select...</option>
                     <option value="< 0 DM"> < 0 DM</option>
                     <option value="1 - 200 DM"> 1 - 200 DM</option>
@@ -23,14 +32,14 @@
             </select>
         </div>
 
-        <div>
-            <label for="months_loan_duration">Loan Duration (Months)</label>
-            <input type="number" id="months_loan_duration" name="months_loan_duration" min="1" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Loan Duration</span>
+            <input class="form-control" type="number" id="months_loan_duration" name="months_loan_duration" min="1" required>
         </div>
 
-        <div>
-            <label for="credit_history">Credit History</label>
-            <select id = "credit_history" name="credit_history">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Credit History</span>
+            <select class="form-select"  required id = "credit_history" name="credit_history">
                 <option disabled selected>Select...</option>
                 <option value="good">Good</option>
                 <option value="poor">Poor</option>
@@ -41,9 +50,9 @@
         </div>
        
         <!--purpose (Dropdown)--> 
-        <div>
-            <label for="purpose">Purpose</label>
-            <select id="purpose" name="purpose">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Loan Purpose</span>
+            <select class="form-select"  required id="purpose" name="purpose">
                     <option disabled selected>Select...</option>    
                     <option value="furniture/appliances"> Furniture/Appliances</option>
                     <option value="education"> Education</option>
@@ -54,15 +63,15 @@
         </div>
 
         <!-- amount (integer input)--> 
-        <div>
-            <label for="amount">Amount to be Borrowed ($)</label>
-            <input type="number" id="amount" name="amount" min="1" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Amount to be Borrowed ($)</span>
+            <input class="form-control" type="number" id="amount" name="amount" min="1" required>
         </div>
 
         <!-- *savings_balance (Dropdown)*-->
-        <div>
-            <label for="savings_balance">Savings Balance</label>
-            <select id="savings_balance" name="savings_balance">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Savings Balance</span>
+            <select class="form-select"  required id="savings_balance" name="savings_balance">
                 <option disabled selected>Select...</option>
                 <option value="unknown">unknown</option>
                 <option value="< 100 DM">< 100 DM</option>
@@ -73,9 +82,9 @@
         </div>
         
         <!-- *employment_duration (Dropdown)*--> 
-        <div>
-            <label for="employment_duration">Employment Duration</label>
-            <select id="employment_duration" name="employment_duration">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Employment Duration</span>
+            <select class="form-select"  required id="employment_duration" name="employment_duration">
                 <option disabled selected>Select...</option>
                 <option value="> 7 years">> 7 years</option>
                 <option value="1 - 4 years">1 - 4 years</option>
@@ -87,27 +96,27 @@
         
         
         <!-- percent_of_income  (integer input)--> 
-        <div>
-            <label for="percent_of_income">Loan as a % of Income</label>
-            <input type="number" id="percent_of_income" name="percent_of_income" min="1" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Loan as a % of Income</span>
+            <input class="form-control" type="number" id="percent_of_income" name="percent_of_income" min="1" required>
         </div>
         
         <!-- years_at_residence (integer input)--> 
-        <div>
-            <label for="years_at_residence">Years at the Current Residence</label>
-            <input type="number" id="years_at_residence" name="years_at_residence" min="0" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Years at the Current Residence</span>
+            <input class="form-control" type="number" id="years_at_residence" name="years_at_residence" min="0" required>
         </div>
         
         <!-- age (integer input)--> 
-        <div>
-            <label for="age">Age</label>
-            <input type="number" id="age" name="age" min="1" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Age</span>
+            <input class="form-control" type="number" id="age" name="age" min="1" required>
         </div>
         
         <!-- *other_credit (Dropdown)*--> 
-        <div>
-            <label for="other_credit">Other Credit</label>
-            <select id="other_credit" name="other_credit">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Other Credit</span>
+            <select  class="form-select"  required id="other_credit" name="other_credit">
                 <option disabled selected>Select...</option>
                 <option value="none">None</option>
                 <option value="bank">Bank</option>
@@ -117,9 +126,9 @@
         
         
         <!-- *housing  (Dropdown)*--> 
-        <div>
-            <label for="housing">Housing</label>
-            <select id="housing" name="housing">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Housing</span>
+            <select class="form-select"  required id="housing" name="housing">
                 <option disabled selected>Select...</option>
                 <option value="own">Own</option>
                 <option value="other">Other</option>
@@ -129,15 +138,15 @@
         
         
         <!-- existing_loans_count (integer input)--> 
-        <div>
-            <label for="existing_loans_count">Existing Loan Count</label>
-            <input type="number" id="existing_loans_count" name="existing_loans_count" min="0" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Existing Loan Count</span>
+            <input class="form-control" type="number" id="existing_loans_count" name="existing_loans_count" min="0" required>
         </div>
         
         <!-- *job (Dropdown)*--> 
-        <div>
-            <label for="job">Job</label>
-            <select id="job" name="job">
+        <div class="input-group mb-3">
+            <span class="input-group-text">Job</span>
+            <select class="form-select"  required id="job" name="job">
                 <option disabled selected>Select...</option>
                 <option value="skilled">Skilled</option>
                 <option value="unskilled">Unskilled</option>
@@ -148,15 +157,15 @@
         
         
         <!-- dependents (integer input)--> 
-        <div>
-            <label for="dependents">Number of Dependents</label>
-            <input type="number" id="dependents" name="dependents" min="0" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Number of Dependents</span>
+            <input class="form-control" type="number" id="dependents" name="dependents" min="0" required>
         </div>
         
         <!-- *phone (Dropdown)*  -->  
-        <div>
-            <label for="phone">Phone</label>
-            <select id="phone" name="phone" required>
+        <div class="input-group mb-3">
+            <span class="input-group-text">Phone</span>
+            <select class="form-select"  id="phone" name="phone" required>
                 <option disabled selected>Select...</option>
                 <option value="yes">Yes</option>
                 <option value="no">No</option>
@@ -164,7 +173,8 @@
         </div>  
 
         <div>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" class="btn btn-primary">
+
         </div>
     </form>
 </body>
