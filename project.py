@@ -7,9 +7,6 @@ app = Flask(__name__)
 def index():
     filePath = "credit.csv"
     categories=["checking_balance", "months_loan_duration",	"credit_history",	"purpose","amount",	"savings_balance","employment_duration","percent_of_income","years_at_residence","age","other_credit","housing","existing_loans_count",	"job","dependents","phone"]
-     
-    
-
     # Check if the form is submitted (POST request)
     if request.method == 'POST':
         input_dictionary = {}
