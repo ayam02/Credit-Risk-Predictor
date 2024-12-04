@@ -30,24 +30,6 @@ class PredictiveModel:
         # accuracy = accuracy_score(y_test, y_predicted)
         # print(accuracy)
 
-    # def createInputDictionary(self, array_input):
-    #     self.input_dictionary = { "checking_balance":"> 200 DM",
-    #                 "months_loan_duration":10, 
-    #                 "credit_history":"good",
-    #                 "purpose":"furniture/appliances",
-    #                 "amount":1000,
-    #                 "savings_balance":"100 - 500 DM",
-    #                 "employment_duration": "unemployed",
-    #                 "percent_of_income":1,
-    #                 "years_at_residence":4,
-    #                 "age":30,
-    #                 "other_credit":"none",
-    #                 "housing":"own",
-    #                 "existing_loans_count":1,
-    #                 "job":"skilled",
-    #                 "dependents":2,
-    #                 "phone":"yes" }
-
     def testingPreprocessing (self, input_dictionary):
         for category in self.categorical_columns:
             user_input= input_dictionary.get(category)
