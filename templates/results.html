@@ -1,5 +1,98 @@
-
-
-    <h1> {{default_risk}}</h1>
-
-    <p>{{dictionary}}</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Risk Dashboard</title>
+    <!-- Basic styling and Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #8B0000; /* Deep red */
+            margin: 0;
+            padding: 0;
+            color: #fff; /* Adjusted text color for better contrast */
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+        .metric {
+            margin: 20px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .chart-container {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Credit Risk Assessment</h1>
+        <div class="metric">
+            <h2>Default Probability</h2>
+            <!--wanted to colour code according to whether they were a default risk-->
+            <p style="color: {{ 'red' if default_risk[0][1] > 0.7 else 'blue' if default_risk[0][1] > 0.5 else 'green' }}">
+                {{ "%.1f"|format(default_risk[0][1] * 100) }}%
+            </p>
+        </div>
+        <div class="metric">
+            <h2>Risk Level</h2>
+            <p style="color: {{ 'red' if default_risk[0][1] > 0.7 else 'blue' if default_risk[0][1] > 0.5 else 'green' }}">
+                {% if default_risk[0][1] > 0.7 %}
+                    High
+                {% elif default_risk[0][1] > 0.5 %}
+                    Medium
+                {% else %}
+                    Low
+                {% endif %}
+            </p>
+        </div>
+        <div class="chart-container">
+            {% for chart in charts %}
+            <h3>{{ chart.title }}</h3>
+            <canvas id="{{ chart.id }}"></canvas>
+            <!-- Display user input for the chart category as a dropdown -->
+             <!--I think it would be cool if changing this moved the comparison dynamically-->
+            <label for="user-choice-{{ chart.id }}">Your Input:</label>
+            <select id="user-choice-{{ chart.id }}" name="user-choice-{{ chart.id }}">
+                {% for label in chart.labels %}
+                <option value="{{ label }}" {% if label == chart.user_value %}selected{% endif %}>
+                    {{ label }}
+                </option>
+                {% endfor %}
+            </select>
+            {% endfor %}
+        </div>        
+    </div>
+    <script>
+        /*loop to generate charts for each column*/
+        {% for chart in charts %}
+        new Chart(document.getElementById('{{ chart.id }}').getContext('2d'), {
+            type: '{{ chart.type }}',
+            data: {
+                labels: {{ chart.labels | tojson }},
+                datasets: [{
+                    data: {{ chart.data | tojson }},
+                    backgroundColor: {{ chart.colors | tojson }},
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true, max: {{ chart.max_value }} }
+                }
+            }
+        });
+        {% endfor %}
+    </script>
+</body>
+</html>
