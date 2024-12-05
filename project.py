@@ -15,8 +15,12 @@ def index():
 
         #test the model -- find the probability 
         default_probability = PredictiveModel(filePath).testRisk(input_dictionary)
+        # Generate charts with user comparison
+        charts = ChartGenerator.generate_charts(user_input=input_dictionary)
+        
+        return render_template("results.html", default_risk=default_probability, charts=charts)
           
-        return render_template("results.html", default_risk = default_probability, dictionary= input_dictionary)
+        #return render_template("results.html", default_risk = default_probability, dictionary= input_dictionary)
     # If it's a GET request, render the form
     return render_template('index.html')
 
