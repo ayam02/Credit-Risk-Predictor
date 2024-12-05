@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from Model import PredictiveModel
+from Chart import ChartGenerator
 
 app = Flask(__name__)
 
@@ -16,7 +17,7 @@ def index():
         #test the model -- find the probability 
         default_probability = PredictiveModel(filePath).testRisk(input_dictionary)
         # Generate charts with user comparison
-        charts = ChartGenerator.generate_charts(user_input=input_dictionary)
+        charts = ChartGenerator().generate_charts(user_input=input_dictionary)
         
         return render_template("results.html", default_risk=default_probability, charts=charts)
           
