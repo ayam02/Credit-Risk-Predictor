@@ -16,10 +16,18 @@ def index():
 
         #test the model -- find the probability 
         default_probability = PredictiveModel(filePath).testRisk(input_dictionary)
-        # Generate charts with user comparison
+        #Generate charts with user comparison
         charts = ChartGenerator().generate_charts(user_input=input_dictionary)
+        profile = {
+            "savings_balance": request.form.get('savings_balance', 0, type=int),
+            "employment_duration": request.form.get('employment_duration', 'unemployed')
+        }
         
-        return render_template("results.html", default_risk=default_probability, charts=charts)
+        #Get all insights
+        insights = DataStats.generate_all_insights(profile)
+
+        #Pass insights to the results page
+        return render_template("results.html", default_risk=default_probability, charts=charts, insights=insights)
           
         #return render_template("results.html", default_risk = default_probability, dictionary= input_dictionary)
     # If it's a GET request, render the form
