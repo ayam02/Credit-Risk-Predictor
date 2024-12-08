@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from Model import PredictiveModel
 from Chart import ChartGenerator
-
+from DataStats import DataStats
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
@@ -24,7 +24,7 @@ def index():
         }
         
         #Get all insights
-        insights = DataStats.generate_all_insights(profile)
+        insights = DataStats().generate_all_insights(profile)
 
         #Pass insights to the results page
         return render_template("results.html", default_risk=default_probability, charts=charts, insights=insights)
