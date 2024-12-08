@@ -1,0 +1,51 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #D3D3D3            
+    margin: 0;
+    padding: 0;
+    color: #fff; /* Adjusted text color for better contrast */
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+/*center an element in the metric container*/
+.metric {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+}
+.chart-container {
+    margin: 20px 0;
+}
+
+/*applu styling on the container to align 2 elements horizontally */
+.default-container{
+    display: flex;
+    flex-wrap: wrap; /*do not allow overflow */
+    justify-content: space-evenly;
+    
+}
+
+#accordion{
+    width: 400px;
+}
+
+
+h2{
+    margin-top: 20px;
+}
+
+.alert{
+    margin-top: 20px;
+}
