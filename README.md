@@ -1,7 +1,7 @@
 # Credit Risk Assessment Project
 
 ## Overview
-This project is a web-based application that predicts the likelihood of a user defaulting on a loan. It integrates statistical analysis, predictive modeling, and data visualization to provide insights and actionable recommendations for risk mitigation.
+This project predicts the likelihood of a user defaulting on a loan. It integrates statistical analysis, predictive modeling, and data visualization to provide insights and actionable recommendations for risk mitigation.
 
 ---
 
