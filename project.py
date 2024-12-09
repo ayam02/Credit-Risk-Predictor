@@ -2,10 +2,20 @@ from flask import Flask, render_template, request
 from Model import PredictiveModel
 from Chart import ChartGenerator
 from DataStats import DataStats
+
+#This is our main method where everything comes together! 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """
+    Handles GET and POST requests for the main route.
+
+    - GET: Render the input form for user data.
+    - POST: Process user input, predict default risk, generate insights, and render results.
+
+    :return: Rendered HTML pages (input form or results)
+    """
 
     filePath = "credit.csv"
 
