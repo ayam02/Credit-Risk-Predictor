@@ -1,3 +1,15 @@
+<!--
+Display the results of the credit risk assessment, including predictions and visualizations.
+
+:param list numerical_columns: List of numerical columns for statistical insights
+:param list categorical_columns: List of categorical columns for visualizations
+:param list charts: List of chart configurations for rendering
+:param dict insights: Statistical insights, including demographic and default counts
+:param list default_risk: Predicted default risk probabilities
+:returns: HTML page with interactive charts, demographic insights, and risk suggestions
+:rtype: HTML
+-->
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -5,7 +17,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Credit Risk Dashboard</title>
-        <!-- Basic styling and Chart.js -->
+        <!-- Basic styling, importing Bootstrap and Chart.js -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
 
@@ -21,6 +33,7 @@
             <h1>Credit Risk Assessment</h1>
             
             <!-- Risk Level Section -->
+            <!-- Display an image representing risk level based on default probability -->
             <div class="metric">
                     {% if default_risk[0][1] > 0.7 %}
                         <img width="300px" src ="../static/images/high_risk.png"/>
@@ -30,7 +43,8 @@
                         <img width="300px"src ="../static/images/low_risk.png"/>
                     {% endif %}
             </div>
-
+            
+            <!-- Display the count of clients who defaulted and did not default -->
             <div class="default-container">
                 <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
                     <div class="card-header">Count of Clients that Defaulted on Their Loans to Date</div>
@@ -47,6 +61,7 @@
             </div>
 
             <!-- Data Analysis Results -->
+            <!-- Display statistical insights for numerical columns in an accordion format -->
             <h2>Statistics</h2>
             <div class="default-container">
                 <!--loop through columns-->
@@ -68,6 +83,7 @@
                 {% endfor %}
             </div>
 
+            <!-- Render charts for each categorical column -->
             <div class="default-container">
                 <!--loop through categorical columns-->
                 {% for category in categorical_columns %}
@@ -96,6 +112,7 @@
             </div>
     
 
+            <!-- Display demographic statistics comparing defaulters and non-defaulters -->
             <h2>Demographic Statistics</h2>
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
@@ -117,6 +134,7 @@
             </table>
 
             <!-- Risk Mitigation Suggestions -->
+            <!-- Displays a list of risk mitigation suggestions (if they are available) in the insights dictionary. -->
             {% if insights['risk_mitigation'] %}
                 <div class="alert alert-info" >
                     <h3>Risk Mitigation Suggestions</h3>
@@ -130,6 +148,29 @@
         </div>
 
         <script>
+            /**
+             * Generate and render charts dynamically for each categorical column.
+             *
+             * 1. Loop through the list of chart configurations (`charts`) provided by the Flask backend.
+             * 2. For each chart configuration:
+             *    - Select the canvas element using the chart's unique ID.
+             *    - Initialize a new `Chart` object from Chart.js.
+             *    - Configure the chart with:
+             *      - `type`: Type of chart (e.g., bar, pie, etc.).
+             *      - `data`: Labels (categories) and dataset values for the chart.
+             *      - `backgroundColor`: Colors for the bars.
+             *      - `options`: Chart display options (e.g., responsive behavior, Y-axis scaling).
+             * 3. Render the chart inside the corresponding canvas element.
+             *
+             * Parameters (Provided by Flask Template):
+             * - `chart.id` (str): Unique ID for the canvas element.
+             * - `chart.type` (str): Type of the chart (e.g., 'bar').
+             * - `chart.labels` (list): Labels for the X-axis (categories).
+             * - `chart.data` (list): Dataset values for the chart (e.g., counts).
+             * - `chart.colors` (list): Background colors for the chart elements.
+             * - `chart.max_value` (float): Maximum value for scaling the Y-axis.
+             */
+            
             /*loop to generate charts for each column*/
             {% for chart in charts %}
                 new Chart(document.getElementById('{{ chart.id }}').getContext('2d'), {
