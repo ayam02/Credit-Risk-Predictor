@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 class DataStats:
-    #Define/separate numerical and categorical columns (so i don't get a typeerror)
+    #Define/separate numerical and categorical columns (to prevent a typeerror)
     numerical_columns = [
         'months_loan_duration', 'amount', 
         'percent_of_income', 'years_at_residence', 
@@ -14,8 +14,13 @@ class DataStats:
 
     @staticmethod
     def preprocess_data(df):
-        #Preprocess numerical and categorical columns to ensure data ->casting numerical columns
-        
+    """
+    Preprocess numerical and categorical columns in the dataset.
+
+    :param pd.DataFrame df: The input dataset to preprocess
+    :return: The preprocessed dataset with missing values handled
+    :rtype: pd.DataFrame
+    """
         # Process numerical columns
         for column in DataStats.numerical_columns:
             if column in df.columns:
@@ -34,15 +39,23 @@ class DataStats:
 
     @staticmethod
     def load_data():
-        #Load and preprocess the dataset... can't resuse prev fn unfortunately
+        """
+        Load and preprocess the dataset from a CSV file.
+    
+        :return: The preprocessed dataset
+        :rtype: pd.DataFrame
+        """
         df = pd.read_csv("credit.csv")
         return DataStats.preprocess_data(df)
 
     @staticmethod
     def calculate_statistics():
-        
-        #Calculate mean, median, mode, and stdev for numerical columns.
-        
+        """
+        Calculate stats (mean, median, mode, stdev) for numerical columns.
+    
+        :return: A dictionary with stats for each numerical column
+        :rtype: dict
+        """
         df = DataStats.load_data()
         stats = {}
         
@@ -58,8 +71,15 @@ class DataStats:
 
     @staticmethod
     def count_defaults(df, category=None):
-        #Counts the number of people likely to default - expand to be grouped by a category.
-        
+        """
+        Count loan defaults
+    
+        :param pd.DataFrame df: The dataset
+        :param str category: (Optional) Column name for grouping default counts
+        :return: A dictionary with default counts
+        :rtype: dict
+        """
+
         if category:
             if category in df.columns:
                 #Group by the specified category and count occurrences of 'yes' in 'default'
@@ -72,15 +92,26 @@ class DataStats:
 
     @staticmethod
     def demographic_statistics(df):
-        #Generate statistics for demographics to identify groups most likely to default.
-        #Aggregates only numeric columns for mean calculation.
+        """
+        Compute mean statistics for numerical columns grouped by 'default' status (yes or no).
+    
+        :param pd.DataFrame df: The dataset
+        :return: A dictionary with demographic statistics for defaulters and non-defaulters
+        :rtype: dict
+        """
         
         numeric_df = df.select_dtypes(include=['number'])
         return df.groupby('default')[numeric_df.columns].mean().to_dict()
 
     @staticmethod
     def risk_mitigation_suggestions(profile):
-        #lowkey frivolous...hardcoded suggestions to reduce default risk based on the profile info entered.
+        """
+        Output suggestions to reduce loan default risk based on user profile...hardcoded suggestions to reduce default risk based on the profile info entered
+    
+        :param dict profile: User's financial and demographic details
+        :return: A list of risk mitigation suggestions (suggestions to be expanded upon ideally)
+        :rtype: list
+        """
         
         suggestions = []
         if profile.get('savings_balance', 0) < 100:
@@ -91,7 +122,14 @@ class DataStats:
 
     @staticmethod
     def generate_all_insights(profile=None):
-        #Combine all insights into a single output structure to display in resuats.
+        """
+        Combine all insights for single output: statistics, default counts, and risk mitigation suggestions.
+    
+        :param dict profile: User's financial and demographic details for custom suggestions
+        :return: A dictionary containing all insights
+        :rtype: dict
+        """
+
         df = DataStats.load_data()
         insights = {
             'statistics': DataStats.calculate_statistics(),
