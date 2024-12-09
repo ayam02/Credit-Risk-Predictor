@@ -2,6 +2,13 @@ import pandas as pd
 import numpy as np
 
 class ChartGenerator:
+    """
+    Generate bar charts for categorical columns in the dataset.
+
+    :param dict user_input: Optional user input dictionary for highlighting specific values
+    :return: List of chart configurations containing chart details (title, labels, data, colors)
+    :rtype: list
+    """
     def __init__(self, filePath):
         self.filePath = filePath
          #This class is going to be staticly reading the dataset
