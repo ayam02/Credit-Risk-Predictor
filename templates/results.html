@@ -124,7 +124,7 @@ Display the results of the credit risk assessment, including predictions and vis
                 <tbody>
                     {% for feature, stats in insights['demographic_stats'].items() %}
                         <tr>
-                            <td>{{ feature }}</td>
+                            <td>{{ feature.replace('_', ' ') }}</td>
                             <td>{{ stats['no'] | round(2) }}</td>
                             <td>{{ stats['yes'] | round(2) }}</td>
                         </tr>
