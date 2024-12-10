@@ -14,13 +14,13 @@ class DataStats:
 
     @staticmethod
     def preprocess_data(df):
-    """
-    Preprocess numerical and categorical columns in the dataset.
+        """
+        Preprocess numerical and categorical columns in the dataset.
 
-    :param pd.DataFrame df: The input dataset to preprocess
-    :return: The preprocessed dataset with missing values handled
-    :rtype: pd.DataFrame
-    """
+        :param pd.DataFrame df: The input dataset to preprocess
+        :return: The preprocessed dataset with missing values handled
+        :rtype: pd.DataFrame
+        """
         # Process numerical columns
         for column in DataStats.numerical_columns:
             if column in df.columns:
